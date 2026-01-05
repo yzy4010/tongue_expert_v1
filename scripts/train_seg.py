@@ -6,8 +6,12 @@ from src.models.unet import UNet
 from src.losses.dice_loss import DiceLoss
 
 # -------------------------
-# Config
+# 分割模型训练
 # -------------------------
+
+print("⚠️ 提示：分割模型已冻结用于下游任务。除非必要，避免重新训练。")
+
+
 IMG_DIR = "../data/images/tongue"
 MASK_DIR = "../data/masks/tongue"
 

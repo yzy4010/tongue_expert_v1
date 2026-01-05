@@ -8,13 +8,13 @@ import matplotlib.pyplot as plt
 from src.models.unet import UNet
 
 # -------------------------
-# Config可视化分割结果
+# 可视化分割结果脚本
 # -------------------------
 IMG_DIR = "../data/images/tongue"          # .jpg
 MASK_DIR = "../data/masks/tongue"          # .png
 SPLIT_FILE = "../data/splits/val.txt"      # 可改为 test.txt
-MODEL_PATH = "unet_tongue_best.pth"     # 你的 best 模型
-OUT_DIR = "outputs/vis_seg"
+MODEL_PATH = "../checkpoints/seg/unet_tongue_best.pth"  # 你的 best 模型
+OUT_DIR = "../outputs/vis_seg"
 
 IMG_SIZE = 256     # 必须与你训练时 Dataset resize 一致
 NUM_SAMPLES = 8    # 随机可视化多少张
