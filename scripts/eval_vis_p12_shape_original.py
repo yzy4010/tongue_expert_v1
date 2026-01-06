@@ -9,7 +9,7 @@ from tqdm import tqdm
 # -------------------------
 # P12 对齐 + 指标 + scatter（修复 num_tg）
 # -------------------------
-SPLIT = "test"  # train/val/test
+SPLIT = "val"  # train/val/test
 SPLIT_FILE = f"../data/splits/{SPLIT}.txt"
 
 GT_CSV = "../data/labels/p12_tg_shape.csv"
@@ -132,6 +132,11 @@ def main():
         })
 
     df = pd.DataFrame(rows)
+    if len(df) == 0:
+        print("\n❌ Aligned 为 0：说明 val 的原图尺度 mask 没有生成，或 MASK_DIR 路径不对。")
+        print("请检查 MASK_DIR:", MASK_DIR)
+        print("并确认该目录下存在 SID.png 文件。")
+        return
     df.to_csv(OUT_CSV, index=False)
     print(f"\nSaved: {OUT_CSV}")
     print(f"Aligned: {len(df)} | Skipped: {skipped}")

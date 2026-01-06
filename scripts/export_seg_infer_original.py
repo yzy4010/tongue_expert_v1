@@ -10,7 +10,7 @@ from src.models.unet import UNet  # 你项目里实际的 UNet 路径/类名按�
 # -------------------------
 # Config导出“原图尺度”分割 mask
 # -------------------------
-SPLIT = "test"  # train / val / test
+SPLIT = "train"  # train / val / test
 SPLIT_FILE = f"../data/splits/{SPLIT}.txt"
 IMG_DIR = "../data/images/tongue"
 
