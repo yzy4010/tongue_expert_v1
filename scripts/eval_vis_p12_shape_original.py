@@ -9,7 +9,7 @@ from tqdm import tqdm
 # -------------------------
 # P12 对齐 + 指标 + scatter（修复 num_tg）
 # -------------------------
-SPLIT = "val"  # train/val/test
+SPLIT = "test"  # train/val/test
 SPLIT_FILE = f"../data/splits/{SPLIT}.txt"
 
 GT_CSV = "../data/labels/p12_tg_shape.csv"
@@ -68,7 +68,8 @@ def compute_p12_from_original_mask(mask_path):
     x1, y1, x2, y2 = bbox
     tg_width = float((x2 - x1) + 1)
     tg_height = float((y2 - y1) + 1)
-    tg_w_div_h = float(tg_width / (tg_height + 1e-6))
+    tg_w_div_h = float(10.0 * tg_width / (tg_height + 1e-6))
+    print("DEBUG ratio ×10 enabled:", tg_w_div_h)
 
     return num_tg_area, tg_width, tg_height, tg_w_div_h
 
@@ -166,4 +167,12 @@ def main():
 
 
 if __name__ == "__main__":
+    import os
+
+    print("DEBUG script path:", os.path.abspath(__file__))
+    print("DEBUG cwd:", os.getcwd())
+    print("DEBUG OUT_CSV:", os.path.abspath(OUT_CSV))
+    print("DEBUG MASK_DIR:", os.path.abspath(MASK_DIR))
+    print("DEBUG SPLIT_FILE:", os.path.abspath(SPLIT_FILE))
+
     main()
