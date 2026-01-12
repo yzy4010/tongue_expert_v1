@@ -81,6 +81,14 @@ class P14MultiTaskNet(nn.Module):
         p13 = self.head_p13(f)
         return emb, p11, p13
 
+    def forward_embedding(self, x):
+        """
+        Return embedding only (P14).
+        Safe wrapper for inference / ROI usage.
+        """
+        emb, _, _ = self.forward(x)
+        return emb
+
 
 @torch.no_grad()
 def main():
